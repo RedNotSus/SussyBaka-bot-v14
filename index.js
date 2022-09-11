@@ -12,7 +12,7 @@ const client = new Discord.Client({
 const fs = require("fs");
 const prefix = ("-");
 
-app.listen(3000, () => {
+app.listen(4234, () => {
   console.log(`Bot starting...`);
 });
 
@@ -22,11 +22,11 @@ app.get('/', async (req, res) => {
 
 client.commands = new Discord.Collection();
 
-const commands = fs.readdirSync("./src/Commands").filter(f => !f.includes(`.`));
+const commands = fs.readdirSync("./Commands").filter(f => !f.includes(`.`));
 for (fold of commands) {
-  const folder = fs.readdirSync(`./src/Commands/${fold}`).filter(file => file.endsWith(`.js`));
+  const folder = fs.readdirSync(`./Commands/${fold}`).filter(file => file.endsWith(`.js`));
   for (file of folder) {
-    const command = require(`./src/Commands/${fold}/${file}`);
+    const command = require(`./Commands/${fold}/${file}`);
     client.commands.set(command.name, command);
   }
 }
@@ -59,7 +59,7 @@ client.on("messageDelete", (message) => {
 });
 
 const { EmbedBuilder } = require("discord.js");
-const { afk } = require("./src/Collections/afk.js");
+const { afk } = require("./Collections/afk.js");
 const moment = require("moment");
 client.on("messageCreate", async (message) => {
   if (!message.guild || message.author.bot) return;
@@ -108,7 +108,7 @@ client.on("guildCreate", (guild) => {
   let joinEmbedBuilder = new Discord.EmbedBuilder()
     .setTitle("Thanks for inviting me!")
     .setURL("https://discord.gg/Snyb6YWErN")
-    .setDescription("Hello, my name is **Sussy Baka**\n\nTo get started, Run the command `-help`. Thats how All commands are run with me like -meme")
+    .setDescription("Hello, my name is **Sussy Baka**\n\nTo get started, Run the command `-help`. Thats how All commands are run with me like `-meme`")
     .addFields({ name: 'Important links', value: '[Invite](https://discord.com/oauth2/authorize?client_id=949114925756862544&permissions=8&scope=bot) - Add the bot to another server to help the bot! \n[Support Server](https://discord.gg/Snyb6YWErN) - Get some bot support if your having issues!\n[Community Server](https://discord.com/invite/3ZwP8a6dz3) - A server with People to chat with. Ran by the developer, and you get too see prodotypes!' })
     .setFooter({ text: `Enjoy the bot!` });
   channelToSend.send({ embeds: [joinEmbedBuilder] });
@@ -119,7 +119,7 @@ client.on('ready', () => {
   client.user.setActivity(`${client.guilds.cache.size} Servers`, { type: 'WATCHING' });
   console.log(`Successfully logged in as ${client.user.tag}`);
 
-  const commands = fs.readdirSync("./src/Commands/./").filter(file => file.endsWith(".js"));
+  const commands = fs.readdirSync("./Commands/./").filter(file => file.endsWith(".js"));
   for (file of commands) {
     const commandName = file.split(".")[0];
     const channel = client.channels.cache.get('972373816519057408');
