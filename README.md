@@ -1,4 +1,3 @@
-# SussyBaka-bot-v14
 # **Sussy Baka Bot v14**
 
 [![Badge](assets/built-with-love.svg)](https://forthebadge.com)
